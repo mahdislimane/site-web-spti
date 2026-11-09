@@ -174,7 +174,7 @@ PASTILLE = {
         "intro": "Pastille garde l'historique de vos copies, vous permet de les recoller dans la fenêtre "
                  "précédente et vous aide à masquer les renseignements personnels avant de les envoyer ailleurs.",
         "features": [
-            ("Historique de vos copies", "Retrouvez un texte copié il y a une heure ou une semaine, épinglez ceux que vous réutilisez souvent."),
+            ("Historique de vos copies", "Retrouvez un texte ou une capture d'écran copiés il y a une heure ou une semaine, épinglez ceux que vous réutilisez souvent."),
             ("Collage en un clic", "Un clic recolle la copie dans la fenêtre où vous travailliez. Raccourci Win+Maj+V."),
             ("Anonymisation", "Un dictionnaire remplace noms, courriels, téléphones ou numéros de dossier par des codes, puis les remet en clair au retour."),
             ("Mode Bouclier", "Copiez un texte, collez-le dans un outil d'IA sans vos renseignements personnels, récupérez la réponse avec les vraies valeurs. Tout se fait sur votre ordinateur."),
@@ -184,6 +184,8 @@ PASTILLE = {
         "plans": "Gratuit ou Pro",
         "rows": [
             ("Historique", "100 copies", "2000 copies"),
+            ("Images et captures d'écran", "10", "200"),
+            ("Lecture du texte des images", "3 par jour", "Illimitée"),
             ("Copies épinglées", "5", "Illimitées"),
             ("Règles d'anonymisation", "3", "Illimitées"),
             ("Historique chiffré, orthographe, applications exclues", "✓", "✓"),
@@ -202,7 +204,7 @@ PASTILLE = {
         "intro": "Pastille keeps a history of what you copy, pastes it back into the previous window and helps you "
                  "mask personal information before sending it elsewhere.",
         "features": [
-            ("Copy history", "Find text you copied an hour or a week ago, and pin the ones you reuse often."),
+            ("Copy history", "Find text or a screenshot you copied an hour or a week ago, and pin the ones you reuse often."),
             ("One-click paste", "One click pastes the copy into the window you were working in. Shortcut Win+Shift+V."),
             ("Anonymization", "A dictionary replaces names, emails, phone numbers or file numbers with codes, then restores them on the way back."),
             ("Shield mode", "Copy a text, paste it into an AI tool without your personal information, and get the answer back with the real values. Everything happens on your computer."),
@@ -212,6 +214,8 @@ PASTILLE = {
         "plans": "Free or Pro",
         "rows": [
             ("History", "100 copies", "2000 copies"),
+            ("Images and screenshots", "10", "200"),
+            ("Reading text from images", "3 per day", "Unlimited"),
             ("Pinned copies", "5", "Unlimited"),
             ("Anonymization rules", "3", "Unlimited"),
             ("Encrypted history, spell checking, excluded apps", "✓", "✓"),
