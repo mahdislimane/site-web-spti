@@ -7,6 +7,7 @@ Les pages juridiques de Pastille sont produites à partir de ../copyManager/Lega
 chaque modification du contrat ou de la politique, puis publier (git commit + push).
 """
 import html
+import json
 import re
 import shutil
 from pathlib import Path
@@ -18,6 +19,8 @@ APP_ASSETS = ROOT.parent / "copyManager" / "packaging" / "Assets"
 # --- À compléter --------------------------------------------------------------------------------------------------
 COMPANY = "Solutions Passerelle TI"
 SITE_URL = "https://solutionspasserelleti.ca"  # adresse publique du site (sitemap, liens canoniques)
+LEGAL_NAME = "9575-4255 Québec inc."
+SAME_AS = []  # pages officielles de l'entreprise (ex. "https://www.linkedin.com/company/…"), reprises dans les données structurées
 EMAIL = "SPTI@solutionspasserelleti.ca"  # courriel de contact affiché sur le site, ex. "info@solutionspasserelleti.ca" (vide = masqué)
 STORE_URL = ""  # lien de la fiche Pastille dans le Microsoft Store, ex. "https://apps.microsoft.com/detail/XXXXXXXXXXXX"
 # -------------------------------------------------------------------------------------------------------------------
@@ -144,7 +147,7 @@ def layout(lang: str, key: str, page: str, title: str, description: str, body: s
 {main}
 <footer class="site-footer">
   <div class="wrap footer-row">
-    <div>© 2026 9575-4255 Québec inc. ({html.escape(COMPANY)}) · {t['made']}{contact}</div>
+    <div>© 2026 {LEGAL_NAME} ({html.escape(COMPANY)}) · {t['made']}{contact}</div>
     <div>
       <a href="{r(PAGES['pastille'][lang])}">Pastille</a> ·
       <a href="{r(PAGES['privacy'][lang])}">{t['privacy']}</a> ·
@@ -236,9 +239,10 @@ def icon(name: str) -> str:
 
 HOME = {
     "fr": {
-        "eyebrow": "Firme de services TI · Québec",
+        "eyebrow": "Firme de services TI",
+        "title": "Power Platform, Dynamics 365 et Azure à Québec",
         "headline": "Des solutions d'affaires sur mesure, de l'analyse à la mise en production.",
-        "intro": "Solutions Passerelle TI conçoit, intègre et automatise vos applications Microsoft Power Platform, "
+        "intro": "Établie à Québec, Solutions Passerelle TI conçoit, intègre et automatise vos applications Microsoft Power Platform, "
                  "Dynamics 365 et Azure, et développe des logiciels qui respectent la vie privée de leurs utilisateurs.",
         "cta": "Discuter de votre projet", "cta2": "Voir nos services",
         "stats": [("6 secteurs", "d'activité servis, du transport aérien à l'assurance"),
@@ -303,9 +307,10 @@ HOME = {
         "contact_cta": "Nous écrire",
     },
     "en": {
-        "eyebrow": "IT services firm · Québec",
+        "eyebrow": "IT services firm",
+        "title": "Power Platform, Dynamics 365 and Azure in Québec City",
         "headline": "Custom business solutions, from analysis to production.",
-        "intro": "Solutions Passerelle TI designs, integrates and automates your Microsoft Power Platform, "
+        "intro": "Based in Québec City, Solutions Passerelle TI designs, integrates and automates your Microsoft Power Platform, "
                  "Dynamics 365 and Azure applications, and builds software that respects its users' privacy.",
         "cta": "Discuss your project", "cta2": "See our services",
         "stats": [("6 industries", "served, from air transport to insurance"),
@@ -436,6 +441,37 @@ PASTILLE = {
 }
 
 
+def structured_data(lang: str) -> str:
+    """Fiche de l'entreprise pour les moteurs de recherche (schema.org, JSON-LD)."""
+    h = HOME[lang]
+    data = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": f"{SITE_URL}/#organisation",
+        "name": COMPANY,
+        "alternateName": "SPTI",
+        "legalName": LEGAL_NAME,
+        "url": url(PAGES["home"][lang]),
+        "logo": f"{SITE_URL}/assets/logo.svg",
+        "image": f"{SITE_URL}/assets/logo.svg",
+        "description": h["intro"],
+        "email": EMAIL,
+        "address": {"@type": "PostalAddress", "addressLocality": "Québec", "addressRegion": "QC", "addressCountry": "CA"},
+        "areaServed": [{"@type": "City", "name": "Québec"}, {"@type": "AdministrativeArea", "name": "Québec"},
+                       {"@type": "Country", "name": "Canada"}],
+        "knowsLanguage": ["fr-CA", "en-CA"],
+        "knowsAbout": ["Microsoft Power Platform", "Power Apps", "Power Automate", "Power BI", "Dynamics 365",
+                       "Microsoft Azure", "Dataverse"],
+        "hasOfferCatalog": {"@type": "OfferCatalog", "name": h["services_title"], "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": title, "description": text}}
+            for _, title, text, _ in h["services"]]},
+    }
+    if SAME_AS:
+        data["sameAs"] = SAME_AS
+    payload = json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")
+    return f'<script type="application/ld+json">\n{payload}\n</script>'
+
+
 def home_page(lang: str) -> str:
     page = PAGES["home"][lang]
     h = HOME[lang]
@@ -526,7 +562,7 @@ def home_page(lang: str) -> str:
     <div class="actions"><a class="button" href="{mail}">{html.escape(EMAIL)}</a></div>
   </div>
 </section>"""
-    return layout(lang, "home", page, f"{COMPANY} – Power Platform, Dynamics 365, Azure", h["intro"], body, wrap=False)
+    return layout(lang, "home", page, f"{COMPANY} – {h['title']}", h["intro"], body + structured_data(lang), wrap=False)
 
 
 def pastille_page(lang: str) -> str:
