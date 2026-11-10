@@ -17,6 +17,7 @@ APP_ASSETS = ROOT.parent / "copyManager" / "packaging" / "Assets"
 
 # --- À compléter --------------------------------------------------------------------------------------------------
 COMPANY = "Solutions Passerelle TI"
+SITE_URL = "https://solutionspasserelleti.ca"  # adresse publique du site (sitemap, liens canoniques)
 EMAIL = "SPTI@solutionspasserelleti.ca"  # courriel de contact affiché sur le site, ex. "info@solutionspasserelleti.ca" (vide = masqué)
 STORE_URL = ""  # lien de la fiche Pastille dans le Microsoft Store, ex. "https://apps.microsoft.com/detail/XXXXXXXXXXXX"
 # -------------------------------------------------------------------------------------------------------------------
@@ -82,10 +83,33 @@ THEME_SCRIPT = """<script>
 </script>"""
 
 
+def url(path: str) -> str:
+    """Adresse publique d'une page : « pastille/index.html » devient « https://…/pastille/ »."""
+    return f"{SITE_URL}/{path.removesuffix('index.html')}"
+
+
+def sitemap() -> str:
+    """Toutes les pages, chacune avec sa version dans l'autre langue (hreflang)."""
+    entries = []
+    for pages in PAGES.values():
+        alternates = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{T[l]["lang"]}" href="{url(p)}"/>'
+                             for l, p in pages.items())
+        alternates += f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{url(pages["fr"])}"/>'
+        entries += [f"  <url>\n    <loc>{url(p)}</loc>{alternates}\n  </url>" for p in pages.values()]
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+            + "\n".join(entries) + "\n</urlset>\n")
+
+
 def layout(lang: str, key: str, page: str, title: str, description: str, body: str, wrap: bool = True) -> str:
     t = T[lang]
     other = "en" if lang == "fr" else "fr"
     other_page = PAGES[key][other] if key in PAGES else PAGES["home"][other]
+    if page == "404.html":
+        seo = '<meta name="robots" content="noindex">\n'
+    else:
+        seo = f'<link rel="canonical" href="{url(page)}">\n' + "".join(
+            f'<link rel="alternate" hreflang="{T[l]["lang"]}" href="{url(p)}">\n' for l, p in PAGES[key].items())
     r = lambda p: rel(page, p)
     home = r(PAGES["home"][lang])
     contact = (f' · <a href="mailto:{html.escape(EMAIL)}">{html.escape(EMAIL)}</a>' if EMAIL else "")
@@ -97,7 +121,7 @@ def layout(lang: str, key: str, page: str, title: str, description: str, body: s
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
-<link rel="icon" href="{r('assets/logo.svg')}" type="image/svg+xml">
+{seo}<link rel="icon" href="{r('assets/logo.svg')}" type="image/svg+xml">
 <link rel="stylesheet" href="{r('assets/style.css')}">
 {THEME_SCRIPT}
 </head>
@@ -589,6 +613,8 @@ def main():
         write(PAGES["privacy"][lang], legal_page(lang, "privacy", f"Privacy.{suffix}.md"))
         write(PAGES["license"][lang], legal_page(lang, "license", f"Eula.{suffix}.md"))
     write("404.html", not_found())
+    write("sitemap.xml", sitemap())
+    write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
     left = sum(p.read_text(encoding="utf-8").count("<mark>") for p in ROOT.rglob("*.html"))
     if left:
         print(f"Attention : {left} zone(s) [à compléter] encore présente(s) dans les pages juridiques.")

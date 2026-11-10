@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://solutionspasserelleti.ca/</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://solutionspasserelleti.ca/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://solutionspasserelleti.ca/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://solutionspasserelleti.ca/"/>
+  </url>
+  <url>
+    <loc>https://solutionspasserelleti.ca/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://solutionspasserelleti.ca/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://solutionspasserelleti.ca/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://solutionspasserelleti.ca/"/>
+  </url>
+  <url>
+    <loc>https://solutionspasserelleti.ca/pastille/</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://solutionspasserelleti.ca/pastille/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://solutionspasserelleti.ca/en/pastille/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://solutionspasserelleti.ca/pastille/"/>
+  </url>
+  <url>
+    <loc>https://solutionspasserelleti.ca/en/pastille/</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://solutionspasserelleti.ca/pastille/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://solutionspasserelleti.ca/en/pastille/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://solutionspasserelleti.ca/pastille/"/>
+  </url>
+  <url>
+    <loc>https://solutionspasserelleti.ca/pastille/confidentialite.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://solutionspasserelleti.ca/pastille/confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://solutionspasserelleti.ca/en/pastille/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://solutionspasserelleti.ca/pastille/confidentialite.html"/>
+  </url>
+  <url>
+    <loc>https://solutionspasserelleti.ca/en/pastille/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://solutionspasserelleti.ca/pastille/confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://solutionspasserelleti.ca/en/pastille/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://solutionspasserelleti.ca/pastille/confidentialite.html"/>
+  </url>
+  <url>
+    <loc>https://solutionspasserelleti.ca/pastille/contrat.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://solutionspasserelleti.ca/pastille/contrat.html"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://solutionspasserelleti.ca/en/pastille/license.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://solutionspasserelleti.ca/pastille/contrat.html"/>
+  </url>
+  <url>
+    <loc>https://solutionspasserelleti.ca/en/pastille/license.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://solutionspasserelleti.ca/pastille/contrat.html"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://solutionspasserelleti.ca/en/pastille/license.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://solutionspasserelleti.ca/pastille/contrat.html"/>
+  </url>
+</urlset>
