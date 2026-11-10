@@ -6,6 +6,7 @@ Génère le site statique de Solutions Passerelle TI (hébergé sur GitHub Pages
 Les pages juridiques de Pastille sont produites à partir de ../copyManager/Legal/*.md : relancer ce script après
 chaque modification du contrat ou de la politique, puis publier (git commit + push).
 """
+import hashlib
 import html
 import json
 import re
@@ -53,6 +54,11 @@ PAGES = {
     "privacy": {"fr": "pastille/confidentialite.html", "en": "en/pastille/privacy.html"},
     "license": {"fr": "pastille/contrat.html", "en": "en/pastille/license.html"},
 }
+
+
+# Version du logo dans son adresse : les navigateurs gardent longtemps l'icône d'onglet en cache, une nouvelle
+# adresse à chaque changement du fichier les force à la recharger.
+LOGO = "assets/logo.svg?v=" + hashlib.sha256((ROOT / "assets" / "logo.svg").read_bytes()).hexdigest()[:8]
 
 
 def rel(from_page: str, to_path: str) -> str:
@@ -124,14 +130,14 @@ def layout(lang: str, key: str, page: str, title: str, description: str, body: s
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
-{seo}<link rel="icon" href="{r('assets/logo.svg')}" type="image/svg+xml">
+{seo}<link rel="icon" href="{r(LOGO)}" type="image/svg+xml">
 <link rel="stylesheet" href="{r('assets/style.css')}">
 {THEME_SCRIPT}
 </head>
 <body>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="brand" href="{home}"><img src="{r('assets/logo.svg')}" alt="" width="34" height="34"><span>{html.escape(COMPANY)}</span></a>
+    <a class="brand" href="{home}"><img src="{r(LOGO)}" alt="" width="34" height="34"><span>{html.escape(COMPANY)}</span></a>
     <nav>
       <span class="nav-links">
         <a href="{home}#services">{t['services']}</a>
@@ -452,8 +458,8 @@ def structured_data(lang: str) -> str:
         "alternateName": "SPTI",
         "legalName": LEGAL_NAME,
         "url": url(PAGES["home"][lang]),
-        "logo": f"{SITE_URL}/assets/logo.svg",
-        "image": f"{SITE_URL}/assets/logo.svg",
+        "logo": f"{SITE_URL}/{LOGO}",
+        "image": f"{SITE_URL}/{LOGO}",
         "description": h["intro"],
         "email": EMAIL,
         "address": {"@type": "PostalAddress", "addressLocality": "Québec", "addressRegion": "QC", "addressCountry": "CA"},
