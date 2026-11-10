@@ -5,33 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page introuvable – Solutions Passerelle TI</title>
 <meta name="description" content="Page introuvable">
-<link rel="icon" href="/assets/favicon.png">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css">
+<script>
+(function () {
+  var root = document.documentElement, key = "spti-theme";
+  try { var saved = localStorage.getItem(key); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+  window.sptiToggleTheme = function () {
+    var dark = root.getAttribute("data-theme") === "dark" ||
+      (!root.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    var next = dark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(key, next); } catch (e) {}
+  };
+})();
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="brand" href="/">Solutions Passerelle TI</a>
+    <a class="brand" href="/"><img src="/assets/logo.svg" alt="" width="34" height="34"><span>Solutions Passerelle TI</span></a>
     <nav>
-      <a href="/pastille/index.html">Pastille</a>
-      <a href="/en/index.html" hreflang="en">EN</a>
+      <span class="nav-links">
+        <a href="/#services">Services</a>
+        <a href="/#applications">Applications</a>
+        <a href="/#a-propos">Notre approche</a>
+        <a href="/#contact">Contact</a>
+      </span>
+      <a href="/en/index.html" hreflang="en" title="English">EN</a>
+      <button class="theme-toggle" type="button" onclick="sptiToggleTheme()" title="Changer de thème (clair / sombre)" aria-label="Changer de thème (clair / sombre)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
     </nav>
   </div>
 </header>
 <main class="wrap">
 
-<section class="hero">
+<section class="legal">
   <h1>404</h1>
   <p class="lead">Cette page n'existe pas ou a été déplacée.<br>This page does not exist or has moved.</p>
   <p><a href="/">Accueil</a> · <a href="/en/">Home</a></p>
 </section>
 </main>
 <footer class="site-footer">
-  <div class="wrap">
-    © 2026 9575-4255 Québec inc. (Solutions Passerelle TI) · Conçu au Québec · <a href="mailto:SPTI@solutionspasserelleti.ca">SPTI@solutionspasserelleti.ca</a><br>
-    <a href="/pastille/confidentialite.html">Confidentialité</a> ·
-    <a href="/pastille/contrat.html">Contrat de licence</a> ·
-    <a href="/en/index.html" hreflang="en">English</a>
+  <div class="wrap footer-row">
+    <div>© 2026 9575-4255 Québec inc. (Solutions Passerelle TI) · Conçu au Québec · <a href="mailto:SPTI@solutionspasserelleti.ca">SPTI@solutionspasserelleti.ca</a></div>
+    <div>
+      <a href="/pastille/index.html">Pastille</a> ·
+      <a href="/pastille/confidentialite.html">Confidentialité</a> ·
+      <a href="/pastille/contrat.html">Contrat de licence</a> ·
+      <a href="/en/index.html" hreflang="en">English</a>
+    </div>
   </div>
 </footer>
 </body>

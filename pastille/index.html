@@ -3,51 +3,82 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pastille – Gestionnaire de presse-papiers pour Windows</title>
-<meta name="description" content="Pastille garde l&#x27;historique de vos copies, vous permet de les recoller dans la fenêtre précédente et vous aide à masquer les renseignements personnels avant de les envoyer ailleurs.">
-<link rel="icon" href="../assets/favicon.png">
+<title>Pastille – L&#x27;assistant presse-papiers des employés de bureau</title>
+<meta name="description" content="Courriels, formulaires, rapports : Pastille garde l&#x27;historique de tout ce que vous copiez, le recolle en un clic dans la fenêtre où vous travaillez et masque les renseignements personnels avant qu&#x27;ils ne quittent votre poste. Moins de ressaisie, moins d&#x27;erreurs, plus de temps pour l&#x27;essentiel.">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/style.css">
+<script>
+(function () {
+  var root = document.documentElement, key = "spti-theme";
+  try { var saved = localStorage.getItem(key); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+  window.sptiToggleTheme = function () {
+    var dark = root.getAttribute("data-theme") === "dark" ||
+      (!root.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    var next = dark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(key, next); } catch (e) {}
+  };
+})();
+</script>
 </head>
 <body>
 <header class="site-header">
   <div class="wrap header-row">
-    <a class="brand" href="../index.html">Solutions Passerelle TI</a>
+    <a class="brand" href="../index.html"><img src="../assets/logo.svg" alt="" width="34" height="34"><span>Solutions Passerelle TI</span></a>
     <nav>
-      <a href="../pastille/index.html">Pastille</a>
-      <a href="../en/pastille/index.html" hreflang="en">EN</a>
+      <span class="nav-links">
+        <a href="../index.html#services">Services</a>
+        <a href="../index.html#applications">Applications</a>
+        <a href="../index.html#a-propos">Notre approche</a>
+        <a href="../index.html#contact">Contact</a>
+      </span>
+      <a href="../en/pastille/index.html" hreflang="en" title="English">EN</a>
+      <button class="theme-toggle" type="button" onclick="sptiToggleTheme()" title="Changer de thème (clair / sombre)" aria-label="Changer de thème (clair / sombre)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
     </nav>
   </div>
 </header>
-<main class="wrap">
+<main>
 
-<section class="hero app-hero">
-  <img src="../assets/pastille.png" alt="" width="112" height="112">
-  <div>
-    <h1>Pastille</h1>
-    <p class="tagline">Gestionnaire de presse-papiers pour Windows</p>
-    <p class="lead">Pastille garde l'historique de vos copies, vous permet de les recoller dans la fenêtre précédente et vous aide à masquer les renseignements personnels avant de les envoyer ailleurs.</p>
-    <span class="button disabled">Bientôt sur le Microsoft Store</span>
+<section class="page-hero">
+  <div class="wrap app-hero">
+    <img src="../assets/pastille.png" alt="" width="112" height="112">
+    <div>
+      <p class="eyebrow">Applications</p>
+      <h1>Pastille</h1>
+      <p class="tagline">L'assistant presse-papiers des employés de bureau</p>
+      <p class="lead">Courriels, formulaires, rapports : Pastille garde l'historique de tout ce que vous copiez, le recolle en un clic dans la fenêtre où vous travaillez et masque les renseignements personnels avant qu'ils ne quittent votre poste. Moins de ressaisie, moins d'erreurs, plus de temps pour l'essentiel.</p>
+      <span class="button disabled">Bientôt sur le Microsoft Store</span>
+    </div>
   </div>
 </section>
-<section class="features"><div class="feature"><h3>Historique de vos copies</h3><p>Retrouvez un texte ou une capture d'écran copiés il y a une heure ou une semaine, épinglez ceux que vous réutilisez souvent.</p></div><div class="feature"><h3>Collage en un clic</h3><p>Un clic recolle la copie dans la fenêtre où vous travailliez. Raccourci Win+Maj+V.</p></div><div class="feature"><h3>Anonymisation</h3><p>Un dictionnaire remplace noms, courriels, téléphones ou numéros de dossier par des codes, puis les remet en clair au retour.</p></div><div class="feature"><h3>Mode Bouclier</h3><p>Copiez un texte, collez-le dans un outil d'IA sans vos renseignements personnels, récupérez la réponse avec les vraies valeurs. Tout se fait sur votre ordinateur.</p></div><div class="feature"><h3>Correcteur d'orthographe</h3><p>Les fautes sont soulignées dans vos copies, avec des suggestions au clic droit.</p></div><div class="feature"><h3>Privé par défaut</h3><p>Historique chiffré sur votre ordinateur, gestionnaires de mots de passe exclus, fenêtres masquées dans les partages d'écran.</p></div></section>
+<section><div class="wrap features"><div class="feature"><h3>Historique de vos copies</h3><p>Retrouvez un texte ou une capture d'écran copiés il y a une heure ou une semaine, épinglez ceux que vous réutilisez souvent.</p></div><div class="feature"><h3>Collage en un clic</h3><p>Un clic recolle la copie dans la fenêtre où vous travailliez. Raccourci Win+Maj+V.</p></div><div class="feature"><h3>Anonymisation</h3><p>Un dictionnaire remplace noms, courriels, téléphones ou numéros de dossier par des codes, puis les remet en clair au retour.</p></div><div class="feature"><h3>Mode Bouclier</h3><p>Copiez un texte, collez-le dans un outil d'IA sans vos renseignements personnels, récupérez la réponse avec les vraies valeurs. Tout se fait sur votre ordinateur.</p></div><div class="feature"><h3>Correcteur d'orthographe</h3><p>Les fautes sont soulignées dans vos copies, avec des suggestions au clic droit.</p></div><div class="feature"><h3>Privé par défaut</h3><p>Historique chiffré sur votre ordinateur, gestionnaires de mots de passe exclus, fenêtres masquées dans les partages d'écran.</p></div></div></section>
+<section class="alt">
+  <div class="wrap">
+    <h2>Gratuit ou Pro</h2>
+    <div class="table-scroll"><table><thead><tr><th></th><th>Gratuit</th><th>Pro</th></tr></thead><tbody><tr><td>Historique</td><td>100 copies</td><td>2000 copies</td></tr><tr><td>Images et captures d'écran</td><td>10</td><td>200</td></tr><tr><td>Lecture du texte des images</td><td>3 par jour</td><td>Illimitée</td></tr><tr><td>Copies épinglées</td><td>5</td><td>Illimitées</td></tr><tr><td>Règles d'anonymisation</td><td>3</td><td>Illimitées</td></tr><tr><td>Historique chiffré, orthographe, applications exclues</td><td>✓</td><td>✓</td></tr><tr><td>Filtres rapides, historique des fichiers copiés</td><td>—</td><td>✓</td></tr><tr><td>Anonymisation automatique (courriels, téléphones, NAS, cartes…)</td><td>—</td><td>✓</td></tr><tr><td>Mode Bouclier, export et import du dictionnaire</td><td>—</td><td>✓</td></tr></tbody></table></div>
+    <p>Pastille Pro s'achète une seule fois dans l'application, par le Microsoft Store. Un essai gratuit de 30 jours est offert.</p>
+  </div>
+</section>
 <section>
-  <h2>Gratuit ou Pro</h2>
-  <div class="table-scroll"><table><thead><tr><th></th><th>Gratuit</th><th>Pro</th></tr></thead><tbody><tr><td>Historique</td><td>100 copies</td><td>2000 copies</td></tr><tr><td>Images et captures d'écran</td><td>10</td><td>200</td></tr><tr><td>Lecture du texte des images</td><td>3 par jour</td><td>Illimitée</td></tr><tr><td>Copies épinglées</td><td>5</td><td>Illimitées</td></tr><tr><td>Règles d'anonymisation</td><td>3</td><td>Illimitées</td></tr><tr><td>Historique chiffré, orthographe, applications exclues</td><td>✓</td><td>✓</td></tr><tr><td>Filtres rapides, historique des fichiers copiés</td><td>—</td><td>✓</td></tr><tr><td>Anonymisation automatique (courriels, téléphones, NAS, cartes…)</td><td>—</td><td>✓</td></tr><tr><td>Mode Bouclier, export et import du dictionnaire</td><td>—</td><td>✓</td></tr></tbody></table></div>
-  <p>Pastille Pro s'achète une seule fois dans l'application, par le Microsoft Store. Un essai gratuit de 30 jours est offert.</p>
+  <div class="wrap">
+    <div class="note">
+      <h2>Vos données restent chez vous</h2>
+      <p>Pastille fonctionne entièrement sur votre ordinateur. Nous ne recevons ni vos copies, ni votre dictionnaire, ni aucune statistique d'utilisation.</p>
+      <p><a href="../pastille/confidentialite.html">Confidentialité</a> · <a href="../pastille/contrat.html">Contrat de licence</a></p>
+    </div>
+    <p class="small">Windows 10 (version 1809 ou plus récente) ou Windows 11, 64 bits. Français et anglais.</p>
+  </div>
 </section>
-<section class="note">
-  <h2>Vos données restent chez vous</h2>
-  <p>Pastille fonctionne entièrement sur votre ordinateur. Nous ne recevons ni vos copies, ni votre dictionnaire, ni aucune statistique d'utilisation.</p>
-  <p><a href="../pastille/confidentialite.html">Confidentialité</a> · <a href="../pastille/contrat.html">Contrat de licence</a></p>
-</section>
-<p class="small">Windows 10 (version 1809 ou plus récente) ou Windows 11, 64 bits. Français et anglais.</p>
 </main>
 <footer class="site-footer">
-  <div class="wrap">
-    © 2026 9575-4255 Québec inc. (Solutions Passerelle TI) · Conçu au Québec · <a href="mailto:SPTI@solutionspasserelleti.ca">SPTI@solutionspasserelleti.ca</a><br>
-    <a href="../pastille/confidentialite.html">Confidentialité</a> ·
-    <a href="../pastille/contrat.html">Contrat de licence</a> ·
-    <a href="../en/pastille/index.html" hreflang="en">English</a>
+  <div class="wrap footer-row">
+    <div>© 2026 9575-4255 Québec inc. (Solutions Passerelle TI) · Conçu au Québec · <a href="mailto:SPTI@solutionspasserelleti.ca">SPTI@solutionspasserelleti.ca</a></div>
+    <div>
+      <a href="../pastille/index.html">Pastille</a> ·
+      <a href="../pastille/confidentialite.html">Confidentialité</a> ·
+      <a href="../pastille/contrat.html">Contrat de licence</a> ·
+      <a href="../en/pastille/index.html" hreflang="en">English</a>
+    </div>
   </div>
 </footer>
 </body>
