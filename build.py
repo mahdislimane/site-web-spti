@@ -1,5 +1,5 @@
 """
-Génère le site statique de Solutions Passerelle TI (hébergé sur GitHub Pages).
+Génère le site statique de SPTI (hébergé sur GitHub Pages).
 
     python build.py
 
@@ -18,7 +18,7 @@ LEGAL = ROOT.parent / "copyManager" / "Legal"
 APP_ASSETS = ROOT.parent / "copyManager" / "packaging" / "Assets"
 
 # --- À compléter --------------------------------------------------------------------------------------------------
-COMPANY = "Solutions Passerelle TI"
+COMPANY = "SPTI"
 SITE_URL = "https://solutionspasserelleti.ca"  # adresse publique du site (sitemap, liens canoniques)
 LEGAL_NAME = "9575-4255 Québec inc."
 SAME_AS = []  # pages officielles de l'entreprise (ex. "https://www.linkedin.com/company/…"), reprises dans les données structurées
@@ -58,7 +58,12 @@ PAGES = {
 
 # Version du logo dans son adresse : les navigateurs gardent longtemps l'icône d'onglet en cache, une nouvelle
 # adresse à chaque changement du fichier les force à la recharger.
-LOGO = "assets/logo.svg?v=" + hashlib.sha256((ROOT / "assets" / "logo.svg").read_bytes()).hexdigest()[:8]
+def versioned(path: str) -> str:
+    return f"{path}?v=" + hashlib.sha256((ROOT / path).read_bytes()).hexdigest()[:8]
+
+
+LOGO = versioned("assets/logo.svg")        # symbole détaillé (en-tête, données structurées)
+FAVICON = versioned("assets/favicon.svg")  # symbole simplifié pour l'onglet du navigateur
 
 
 def rel(from_page: str, to_path: str) -> str:
@@ -130,7 +135,7 @@ def layout(lang: str, key: str, page: str, title: str, description: str, body: s
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
-{seo}<link rel="icon" href="{r(LOGO)}" type="image/svg+xml">
+{seo}<link rel="icon" href="{r(FAVICON)}" type="image/svg+xml">
 <link rel="stylesheet" href="{r('assets/style.css')}">
 {THEME_SCRIPT}
 </head>
@@ -248,7 +253,7 @@ HOME = {
         "eyebrow": "Firme de services TI",
         "title": "Power Platform, Dynamics 365 et Azure à Québec",
         "headline": "Des solutions d'affaires sur mesure, de l'analyse à la mise en production.",
-        "intro": "Établie à Québec, Solutions Passerelle TI conçoit, intègre et automatise vos applications Microsoft Power Platform, "
+        "intro": "Établie à Québec, SPTI conçoit, intègre et automatise vos applications Microsoft Power Platform, "
                  "Dynamics 365 et Azure, et développe des logiciels qui respectent la vie privée de leurs utilisateurs.",
         "cta": "Discuter de votre projet", "cta2": "Voir nos services",
         "stats": [("6 secteurs", "d'activité servis, du transport aérien à l'assurance"),
@@ -316,7 +321,7 @@ HOME = {
         "eyebrow": "IT services firm",
         "title": "Power Platform, Dynamics 365 and Azure in Québec City",
         "headline": "Custom business solutions, from analysis to production.",
-        "intro": "Based in Québec City, Solutions Passerelle TI designs, integrates and automates your Microsoft Power Platform, "
+        "intro": "Based in Québec City, SPTI designs, integrates and automates your Microsoft Power Platform, "
                  "Dynamics 365 and Azure applications, and builds software that respects its users' privacy.",
         "cta": "Discuss your project", "cta2": "See our services",
         "stats": [("6 industries", "served, from air transport to insurance"),
@@ -455,7 +460,6 @@ def structured_data(lang: str) -> str:
         "@type": "ProfessionalService",
         "@id": f"{SITE_URL}/#organisation",
         "name": COMPANY,
-        "alternateName": "SPTI",
         "legalName": LEGAL_NAME,
         "url": url(PAGES["home"][lang]),
         "logo": f"{SITE_URL}/{LOGO}",

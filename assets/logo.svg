@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#1E3A8A"/>
-<g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -2.5)">
-<path d="M45 15C40 9 27 9 26.5 17C26 22 30 24 35.5 27C41 30 46 31 46 38C46 45 37 47 26.99 42.38" stroke="#fff" stroke-width="6.67"/>
-<path d="M33.3 31 24.08 47.62" stroke="#38BDF8" stroke-width="4"/>
-<g transform="translate(24.08 47.62) rotate(29)"><path d="M-9.5 1.5 -12.5 4.5 -9.5 7.5M9.5 1.5 12.5 4.5 9.5 7.5" stroke="#1E3A8A" stroke-width="5.4"/><path d="M-9.5 1.5 -12.5 4.5 -9.5 7.5M9.5 1.5 12.5 4.5 9.5 7.5" stroke="#38BDF8" stroke-width="2.4"/><rect x="-6.0" y="0" width="12" height="9" rx="2.6" fill="#38BDF8" stroke="#1E3A8A" stroke-width="3"/><path d="M-3.0 3h1M-.8 3h1.6M2.0 3h1M-2.6 6h5.2" stroke="#1E3A8A" stroke-width="1.5"/></g>
-<path d="M26.75 22.15 44.25 31.85" stroke="#A3E635" stroke-width="9" stroke-linecap="butt"/>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#1E3A8A"/><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M44.50 11.50 L24.26 23.18 Q19.50 25.93 24.26 28.68 L39.74 37.62 Q44.50 40.37 39.74 43.12 L19.50 54.80" stroke="#FFFFFF" stroke-width="7"/><path d="M26.00 29.68 38.00 36.62" stroke="#1E3A8A" stroke-width="10"/><path d="M27.29 30.43 36.71 35.87" stroke="#A3E635" stroke-width="7"/><path d="M29.46 31.68 34.54 34.62" stroke="#1E3A8A" stroke-width="2.6"/></g></svg>

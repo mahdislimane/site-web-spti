@@ -1,4 +1,4 @@
-# Site de Solutions Passerelle TI
+# Site de SPTI
 
 Site statique (HTML/CSS, sans dépendance) publié avec **GitHub Pages** sur **https://solutionspasserelleti.ca**.
 
