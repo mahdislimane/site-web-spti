@@ -21,6 +21,7 @@ APP_ASSETS = ROOT.parent / "copyManager" / "packaging" / "Assets"
 COMPANY = "SPTI"
 SITE_URL = "https://solutionspasserelleti.ca"  # adresse publique du site (sitemap, liens canoniques)
 LEGAL_NAME = "9575-4255 Québec inc."
+BING_VERIFICATION = "816F250755DFBD7F422F1954F36CDB7F"
 SAME_AS = []  # pages officielles de l'entreprise (ex. "https://www.linkedin.com/company/…"), reprises dans les données structurées
 EMAIL = "SPTI@solutionspasserelleti.ca"  # courriel de contact affiché sur le site, ex. "info@solutionspasserelleti.ca" (vide = masqué)
 STORE_URL = ""  # lien de la fiche Pastille dans le Microsoft Store, ex. "https://apps.microsoft.com/detail/XXXXXXXXXXXX"
@@ -130,6 +131,8 @@ def layout(lang: str, key: str, page: str, title: str, description: str, body: s
     else:
         seo = f'<link rel="canonical" href="{url(page)}">\n' + "".join(
             f'<link rel="alternate" hreflang="{T[l]["lang"]}" href="{url(p)}">\n' for l, p in PAGES[key].items())
+    if page == "index.html":
+        seo += f'<meta name="msvalidate.01" content="{BING_VERIFICATION}">\n'  # vérification Bing Webmaster Tools : ne pas retirer
     r = lambda p: rel(page, p)
     home = r(PAGES["home"][lang])
     contact = (f' · <a href="mailto:{html.escape(EMAIL)}">{html.escape(EMAIL)}</a>' if EMAIL else "")
