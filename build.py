@@ -64,11 +64,17 @@ def versioned(path: str) -> str:
 
 LOGO = versioned("assets/logo.svg")        # symbole détaillé (en-tête, données structurées)
 FAVICON = versioned("assets/favicon.svg")  # symbole simplifié pour l'onglet du navigateur
+FAVICON_PNG = versioned("assets/favicon-192.png")  # Google affiche ce format dans ses résultats (multiple de 48 px)
+APPLE_ICON = versioned("assets/apple-touch-icon.png")
 
 
 def rel(from_page: str, to_path: str) -> str:
-    depth = from_page.count("/")
-    return "../" * depth + to_path
+    # Les liens visent le dossier (« en/ ») et non « en/index.html » : sinon Google découvre
+    # deux adresses pour la même page et signale « Autre page avec balise canonique correcte ».
+    path, sep, anchor = to_path.partition("#")
+    path = path.removesuffix("index.html")
+    target = "../" * from_page.count("/") + path
+    return (target or "./") + sep + anchor
 
 
 def store_button(lang: str) -> str:
@@ -135,7 +141,10 @@ def layout(lang: str, key: str, page: str, title: str, description: str, body: s
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(description)}">
-{seo}<link rel="icon" href="{r(FAVICON)}" type="image/svg+xml">
+{seo}<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="{r(FAVICON_PNG)}" type="image/png" sizes="192x192">
+<link rel="icon" href="{r(FAVICON)}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{r(APPLE_ICON)}">
 <link rel="stylesheet" href="{r('assets/style.css')}">
 {THEME_SCRIPT}
 </head>
@@ -636,9 +645,9 @@ def not_found() -> str:
   <p><a href="/">{T['fr']['home']}</a> · <a href="/en/">{T['en']['home']}</a></p>
 </section>"""
     return layout("fr", "home", "404.html", f"{T['fr']['notfound']} – {COMPANY}", T["fr"]["notfound"], body) \
-        .replace('href="assets/', 'href="/assets/').replace('href="index.html"', 'href="/"') \
+        .replace('href="assets/', 'href="/assets/').replace('href="./"', 'href="/"') \
         .replace('href="pastille/', 'href="/pastille/').replace('href="en/', 'href="/en/') \
-        .replace('src="assets/', 'src="/assets/').replace('href="index.html#', 'href="/#')
+        .replace('src="assets/', 'src="/assets/').replace('href="./#', 'href="/#')
 
 
 def write(path: str, content: str):
